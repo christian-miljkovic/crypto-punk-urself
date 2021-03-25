@@ -1,7 +1,7 @@
-import React from 'react'
-import logo from './logo.svg'
+import React, { useEffect, useState } from 'react'
 import './App.css'
 import styled from 'styled-components'
+import { generatePunk } from './generate-punk'
 
 const StyledHeader = styled.header`
   background-color: #6f42f5;
@@ -15,10 +15,27 @@ const StyledHeader = styled.header`
 `
 
 function App() {
+  const [punk, setPunkCodes] = useState<Promise<string> | any>()
+
+  useEffect(() => {
+    const initialPunkCodes = {
+      accessoryCode: 1,
+      beardCode: 1,
+      earsCode: 1,
+      eyesCode: 1,
+      faceCode: 1,
+      hairCode: 1,
+      mouthCode: 1,
+      noseCode: 1,
+    }
+    const punk = generatePunk(initialPunkCodes)
+    setPunkCodes(punk)
+  }, [])
+
   return (
     <div className="App">
       <StyledHeader>
-        <img src={logo} className="App-logo" alt="logo" />
+        {punk && <img src={punk} alt="punk" />}
         <h2>Crypto Punk Urself</h2>
       </StyledHeader>
     </div>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './App.css'
 import styled from 'styled-components'
 import { generatePunk } from './generate-punk'
+import { PunkCodes } from './generate-punk'
 
 const StyledHeader = styled.header`
   background-color: #6f42f5;
@@ -13,24 +14,29 @@ const StyledHeader = styled.header`
   font-size: calc(10px + 2vmin);
   color: white;
 `
+const initialPunkCodes = {
+  accessoryCode: 1,
+  beardCode: 1,
+  earsCode: 1,
+  eyesCode: 1,
+  faceCode: 1,
+  hairCode: 1,
+  mouthCode: 1,
+  noseCode: 1,
+}
 
 function App() {
-  const [punk, setPunkCodes] = useState<Promise<string> | any>()
+  const [punkCodes, setPunkCodes] = useState<PunkCodes>(initialPunkCodes)
+  const [punk, setPunk] = useState<string>('')
 
   useEffect(() => {
-    const initialPunkCodes = {
-      accessoryCode: 1,
-      beardCode: 1,
-      earsCode: 1,
-      eyesCode: 1,
-      faceCode: 1,
-      hairCode: 1,
-      mouthCode: 1,
-      noseCode: 1,
-    }
-    const punk = generatePunk(initialPunkCodes)
-    setPunkCodes(punk)
-  }, [])
+    createPunk(punkCodes)
+  }, [punkCodes])
+
+  async function createPunk(punkCodes: PunkCodes): Promise<void> {
+    const punk = await generatePunk(punkCodes)
+    setPunk(punk)
+  }
 
   return (
     <div className="App">

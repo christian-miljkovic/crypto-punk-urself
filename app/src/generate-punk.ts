@@ -1,6 +1,6 @@
 import mergeImages from 'merge-images'
 
-interface PunkCodes {
+export interface PunkCodes {
   accessoryCode?: number
   beardCode?: number
   earsCode: number
@@ -21,14 +21,15 @@ export async function generatePunk({
   mouthCode,
   noseCode,
 }: PunkCodes): Promise<string> {
+  // Order matters because the images get layered on
   return await mergeImages([
-    `./assets/accessory/access${accessoryCode}.png`,
+    `./assets/face/face${faceCode}.png`,
     `./assets/beard/beard${beardCode}.png`,
+    `./assets/hair/hair${hairCode}.png`,
     `./assets/ears/ears${earsCode}.png`,
     `./assets/eyes/eyes${eyesCode}.png`,
-    `./assets/face/face${faceCode}.png`,
-    `./assets/hair/hair${hairCode}.png`,
     `./assets/mouth/mouth${mouthCode}.png`,
     `./assets/nose/nose${noseCode}.png`,
+    `./assets/accessory/access${accessoryCode}.png`,
   ])
 }

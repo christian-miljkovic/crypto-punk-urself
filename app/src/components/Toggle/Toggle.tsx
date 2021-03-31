@@ -10,13 +10,17 @@ const StyledContainer = styled.div`
   display: flex;
 `
 
+const StyledParagraph = styled.p`
+  color: white;
+`
+
 export function Toggle({
   onClick: handleClick,
   attribute,
 }: ToggleProps): JSX.Element {
   return (
     <>
-      <p>{attribute}</p>
+      <StyledParagraph>{attribute}</StyledParagraph>
       <StyledContainer>
         <ArrowButton
           isLeft

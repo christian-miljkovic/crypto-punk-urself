@@ -97,7 +97,6 @@ export function CustomizeScreen() {
   function handleClick(partName: string, isLeft: boolean): void {
     updatePunk({ partName, isLeft })
   }
-  console.debug('hello')
 
   return (
     <StyledContainer>

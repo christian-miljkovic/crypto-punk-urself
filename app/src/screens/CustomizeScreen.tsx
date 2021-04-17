@@ -53,7 +53,6 @@ const StyledContainer = styled.div`
   text-align: center;
   background-color: #6f42f5;
   justify-content: center;
-  /* flex-direction: column; */
 `
 
 const StyledSideBar = styled.div`
